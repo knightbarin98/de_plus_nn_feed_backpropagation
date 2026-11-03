@@ -1,0 +1,115 @@
+22:23:57 [INFO] Iris cargado: 150 muestras, device=cpu
+22:24:00 [INFO] exp 01 sub 1 | epochs=10000 conv=False | final_loss=0.001800 cum=161.00 mean=0.016100 | acc=0.9200 macroP=0.9216 | P[set,ver,vir]=[1.000,0.852,0.913]
+22:24:00 [INFO] exp 01 sub 2 | epochs=10000 conv=False | final_loss=0.004348 cum=218.72 mean=0.021872 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:24:01 [INFO] == experimento 01 | accuracy OOF=0.9400
+22:24:04 [INFO] exp 02 sub 1 | epochs=10000 conv=False | final_loss=0.003266 cum=224.93 mean=0.022493 | acc=0.9600 macroP=0.9605 | P[set,ver,vir]=[1.000,0.923,0.958]
+22:24:04 [INFO] exp 02 sub 2 | epochs=10000 conv=False | final_loss=0.011984 cum=281.97 mean=0.028197 | acc=0.9467 macroP=0.9467 | P[set,ver,vir]=[1.000,0.920,0.920]
+22:24:04 [INFO] == experimento 02 | accuracy OOF=0.9533
+22:24:07 [INFO] exp 03 sub 1 | epochs=10000 conv=False | final_loss=0.004382 cum=213.29 mean=0.021329 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:24:07 [INFO] exp 03 sub 2 | epochs=10000 conv=False | final_loss=0.013729 cum=320.72 mean=0.032072 | acc=0.9733 macroP=0.9733 | P[set,ver,vir]=[1.000,0.960,0.960]
+22:24:08 [INFO] == experimento 03 | accuracy OOF=0.9667
+22:24:10 [INFO] exp 04 sub 1 | epochs=10000 conv=False | final_loss=0.001842 cum=216.51 mean=0.021651 | acc=0.9467 macroP=0.9467 | P[set,ver,vir]=[1.000,0.920,0.920]
+22:24:10 [INFO] exp 04 sub 2 | epochs=10000 conv=False | final_loss=0.019368 cum=386.17 mean=0.038617 | acc=1.0000 macroP=1.0000 | P[set,ver,vir]=[1.000,1.000,1.000]
+22:24:11 [INFO] == experimento 04 | accuracy OOF=0.9733
+22:24:14 [INFO] exp 05 sub 1 | epochs=10000 conv=False | final_loss=0.011794 cum=278.11 mean=0.027811 | acc=0.9867 macroP=0.9872 | P[set,ver,vir]=[1.000,0.962,1.000]
+22:24:14 [INFO] exp 05 sub 2 | epochs=10000 conv=False | final_loss=0.005372 cum=226.67 mean=0.022667 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:24:14 [INFO] == experimento 05 | accuracy OOF=0.9733
+22:24:17 [INFO] exp 06 sub 1 | epochs=10000 conv=False | final_loss=0.010161 cum=270.03 mean=0.027003 | acc=0.9733 macroP=0.9753 | P[set,ver,vir]=[1.000,0.926,1.000]
+22:24:17 [INFO] exp 06 sub 2 | epochs=10000 conv=False | final_loss=0.005689 cum=226.09 mean=0.022609 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:24:17 [INFO] == experimento 06 | accuracy OOF=0.9667
+22:24:20 [INFO] exp 07 sub 1 | epochs=10000 conv=False | final_loss=0.011345 cum=273.51 mean=0.027351 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,0.893,1.000]
+22:24:20 [INFO] exp 07 sub 2 | epochs=10000 conv=False | final_loss=0.004237 cum=225.82 mean=0.022582 | acc=0.9467 macroP=0.9540 | P[set,ver,vir]=[1.000,1.000,0.862]
+22:24:21 [INFO] == experimento 07 | accuracy OOF=0.9533
+22:24:23 [INFO] exp 08 sub 1 | epochs=10000 conv=False | final_loss=0.001016 cum=170.91 mean=0.017091 | acc=0.9333 macroP=0.9444 | P[set,ver,vir]=[1.000,1.000,0.833]
+22:24:23 [INFO] exp 08 sub 2 | epochs=10000 conv=False | final_loss=0.018187 cum=345.85 mean=0.034585 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,0.893,1.000]
+22:24:24 [INFO] == experimento 08 | accuracy OOF=0.9467
+22:24:27 [INFO] exp 09 sub 1 | epochs=10000 conv=False | final_loss=0.006832 cum=252.20 mean=0.025220 | acc=0.9467 macroP=0.9485 | P[set,ver,vir]=[1.000,0.889,0.957]
+22:24:27 [INFO] exp 09 sub 2 | epochs=10000 conv=False | final_loss=0.005308 cum=262.18 mean=0.026218 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:24:27 [INFO] == experimento 09 | accuracy OOF=0.9533
+22:24:30 [INFO] exp 10 sub 1 | epochs=10000 conv=False | final_loss=0.019218 cum=358.88 mean=0.035888 | acc=0.9733 macroP=0.9753 | P[set,ver,vir]=[1.000,0.926,1.000]
+22:24:30 [INFO] exp 10 sub 2 | epochs=10000 conv=False | final_loss=0.001011 cum=164.07 mean=0.016407 | acc=0.9467 macroP=0.9485 | P[set,ver,vir]=[1.000,0.957,0.889]
+22:24:31 [INFO] == experimento 10 | accuracy OOF=0.9600
+22:24:33 [INFO] exp 11 sub 1 | epochs=10000 conv=False | final_loss=0.012087 cum=255.10 mean=0.025510 | acc=0.9467 macroP=0.9485 | P[set,ver,vir]=[1.000,0.957,0.889]
+22:24:33 [INFO] exp 11 sub 2 | epochs=10000 conv=False | final_loss=0.007211 cum=243.93 mean=0.024393 | acc=0.9733 macroP=0.9733 | P[set,ver,vir]=[1.000,0.960,0.960]
+22:24:34 [INFO] == experimento 11 | accuracy OOF=0.9600
+22:24:36 [INFO] exp 12 sub 1 | epochs=10000 conv=False | final_loss=0.006249 cum=223.52 mean=0.022352 | acc=0.9600 macroP=0.9614 | P[set,ver,vir]=[1.000,0.958,0.926]
+22:24:36 [INFO] exp 12 sub 2 | epochs=10000 conv=False | final_loss=0.003940 cum=202.40 mean=0.020240 | acc=0.9467 macroP=0.9485 | P[set,ver,vir]=[1.000,0.889,0.957]
+22:24:37 [INFO] == experimento 12 | accuracy OOF=0.9533
+22:24:40 [INFO] exp 13 sub 1 | epochs=10000 conv=False | final_loss=0.005548 cum=231.22 mean=0.023122 | acc=0.9200 macroP=0.9200 | P[set,ver,vir]=[1.000,0.880,0.880]
+22:24:40 [INFO] exp 13 sub 2 | epochs=10000 conv=False | final_loss=0.004536 cum=225.30 mean=0.022530 | acc=0.9467 macroP=0.9540 | P[set,ver,vir]=[1.000,1.000,0.862]
+22:24:40 [INFO] == experimento 13 | accuracy OOF=0.9333
+22:24:43 [INFO] exp 14 sub 1 | epochs=10000 conv=False | final_loss=0.001943 cum=177.76 mean=0.017776 | acc=0.9467 macroP=0.9540 | P[set,ver,vir]=[1.000,1.000,0.862]
+22:24:43 [INFO] exp 14 sub 2 | epochs=10000 conv=False | final_loss=0.010047 cum=269.48 mean=0.026948 | acc=0.9733 macroP=0.9753 | P[set,ver,vir]=[1.000,0.926,1.000]
+22:24:43 [INFO] == experimento 14 | accuracy OOF=0.9600
+22:24:46 [INFO] exp 15 sub 1 | epochs=10000 conv=False | final_loss=0.000887 cum=170.82 mean=0.017082 | acc=0.9200 macroP=0.9267 | P[set,ver,vir]=[1.000,0.952,0.828]
+22:24:46 [INFO] exp 15 sub 2 | epochs=10000 conv=False | final_loss=0.022530 cum=380.64 mean=0.038064 | acc=0.9733 macroP=0.9753 | P[set,ver,vir]=[1.000,0.926,1.000]
+22:24:47 [INFO] == experimento 15 | accuracy OOF=0.9467
+22:24:49 [INFO] exp 16 sub 1 | epochs=10000 conv=False | final_loss=0.002382 cum=194.28 mean=0.019428 | acc=0.9333 macroP=0.9444 | P[set,ver,vir]=[1.000,1.000,0.833]
+22:24:49 [INFO] exp 16 sub 2 | epochs=10000 conv=False | final_loss=0.006970 cum=230.44 mean=0.023044 | acc=0.9467 macroP=0.9485 | P[set,ver,vir]=[1.000,0.889,0.957]
+22:24:50 [INFO] == experimento 16 | accuracy OOF=0.9400
+22:24:53 [INFO] exp 17 sub 1 | epochs=10000 conv=False | final_loss=0.019813 cum=338.66 mean=0.033866 | acc=0.9867 macroP=0.9872 | P[set,ver,vir]=[1.000,1.000,0.962]
+22:24:53 [INFO] exp 17 sub 2 | epochs=10000 conv=False | final_loss=0.005067 cum=213.50 mean=0.021350 | acc=0.9467 macroP=0.9485 | P[set,ver,vir]=[1.000,0.957,0.889]
+22:24:53 [INFO] == experimento 17 | accuracy OOF=0.9667
+22:24:56 [INFO] exp 18 sub 1 | epochs=10000 conv=False | final_loss=0.005464 cum=238.61 mean=0.023861 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:24:56 [INFO] exp 18 sub 2 | epochs=10000 conv=False | final_loss=0.011698 cum=272.77 mean=0.027277 | acc=0.9600 macroP=0.9610 | P[set,ver,vir]=[1.000,0.923,0.960]
+22:24:56 [INFO] == experimento 18 | accuracy OOF=0.9600
+22:24:59 [INFO] exp 19 sub 1 | epochs=10000 conv=False | final_loss=0.005049 cum=229.62 mean=0.022962 | acc=0.9600 macroP=0.9605 | P[set,ver,vir]=[1.000,0.923,0.958]
+22:24:59 [INFO] exp 19 sub 2 | epochs=10000 conv=False | final_loss=0.018034 cum=339.59 mean=0.033959 | acc=0.9733 macroP=0.9753 | P[set,ver,vir]=[1.000,1.000,0.926]
+22:25:00 [INFO] == experimento 19 | accuracy OOF=0.9667
+22:25:02 [INFO] exp 20 sub 1 | epochs=10000 conv=False | final_loss=0.013152 cum=266.74 mean=0.026674 | acc=0.9467 macroP=0.9540 | P[set,ver,vir]=[1.000,1.000,0.862]
+22:25:02 [INFO] exp 20 sub 2 | epochs=10000 conv=False | final_loss=0.002853 cum=216.35 mean=0.021635 | acc=0.9333 macroP=0.9372 | P[set,ver,vir]=[1.000,0.857,0.955]
+22:25:03 [INFO] == experimento 20 | accuracy OOF=0.9400
+22:25:05 [INFO] exp 21 sub 1 | epochs=10000 conv=False | final_loss=0.004713 cum=224.84 mean=0.022484 | acc=0.9200 macroP=0.9267 | P[set,ver,vir]=[1.000,0.828,0.952]
+22:25:05 [INFO] exp 21 sub 2 | epochs=10000 conv=False | final_loss=0.003677 cum=212.32 mean=0.021232 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:25:06 [INFO] == experimento 21 | accuracy OOF=0.9400
+22:25:09 [INFO] exp 22 sub 1 | epochs=10000 conv=False | final_loss=0.020998 cum=351.62 mean=0.035162 | acc=1.0000 macroP=1.0000 | P[set,ver,vir]=[1.000,1.000,1.000]
+22:25:09 [INFO] exp 22 sub 2 | epochs=10000 conv=False | final_loss=0.001729 cum=195.67 mean=0.019567 | acc=0.9600 macroP=0.9605 | P[set,ver,vir]=[1.000,0.958,0.923]
+22:25:09 [INFO] == experimento 22 | accuracy OOF=0.9800
+22:25:12 [INFO] exp 23 sub 1 | epochs=10000 conv=False | final_loss=0.011756 cum=285.14 mean=0.028514 | acc=0.9467 macroP=0.9485 | P[set,ver,vir]=[1.000,0.889,0.957]
+22:25:12 [INFO] exp 23 sub 2 | epochs=10000 conv=False | final_loss=0.002952 cum=226.66 mean=0.022666 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:25:13 [INFO] == experimento 23 | accuracy OOF=0.9533
+22:25:15 [INFO] exp 24 sub 1 | epochs=10000 conv=False | final_loss=0.012019 cum=314.99 mean=0.031499 | acc=0.9867 macroP=0.9872 | P[set,ver,vir]=[1.000,0.962,1.000]
+22:25:15 [INFO] exp 24 sub 2 | epochs=10000 conv=False | final_loss=0.004645 cum=226.50 mean=0.022650 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:25:16 [INFO] == experimento 24 | accuracy OOF=0.9733
+22:25:19 [INFO] exp 25 sub 1 | epochs=10000 conv=False | final_loss=0.010009 cum=248.88 mean=0.024888 | acc=0.9333 macroP=0.9338 | P[set,ver,vir]=[1.000,0.917,0.885]
+22:25:19 [INFO] exp 25 sub 2 | epochs=10000 conv=False | final_loss=0.004468 cum=223.15 mean=0.022315 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:25:19 [INFO] == experimento 25 | accuracy OOF=0.9467
+22:25:22 [INFO] exp 26 sub 1 | epochs=10000 conv=False | final_loss=0.008751 cum=266.21 mean=0.026621 | acc=0.9467 macroP=0.9485 | P[set,ver,vir]=[1.000,0.889,0.957]
+22:25:22 [INFO] exp 26 sub 2 | epochs=10000 conv=False | final_loss=0.003088 cum=206.78 mean=0.020678 | acc=0.9333 macroP=0.9444 | P[set,ver,vir]=[1.000,1.000,0.833]
+22:25:23 [INFO] == experimento 26 | accuracy OOF=0.9400
+22:25:25 [INFO] exp 27 sub 1 | epochs=10000 conv=False | final_loss=0.001504 cum=173.64 mean=0.017364 | acc=0.9333 macroP=0.9444 | P[set,ver,vir]=[1.000,1.000,0.833]
+22:25:25 [INFO] exp 27 sub 2 | epochs=10000 conv=False | final_loss=0.008312 cum=273.65 mean=0.027365 | acc=0.9333 macroP=0.9444 | P[set,ver,vir]=[1.000,0.833,1.000]
+22:25:26 [INFO] == experimento 27 | accuracy OOF=0.9333
+22:25:28 [INFO] exp 28 sub 1 | epochs=10000 conv=False | final_loss=0.001361 cum=206.03 mean=0.020603 | acc=0.9333 macroP=0.9444 | P[set,ver,vir]=[1.000,1.000,0.833]
+22:25:28 [INFO] exp 28 sub 2 | epochs=10000 conv=False | final_loss=0.010344 cum=283.59 mean=0.028359 | acc=0.9467 macroP=0.9540 | P[set,ver,vir]=[1.000,0.862,1.000]
+22:25:29 [INFO] == experimento 28 | accuracy OOF=0.9400
+22:25:32 [INFO] exp 29 sub 1 | epochs=10000 conv=False | final_loss=0.016690 cum=297.66 mean=0.029766 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:25:32 [INFO] exp 29 sub 2 | epochs=10000 conv=False | final_loss=0.003321 cum=194.87 mean=0.019487 | acc=0.9600 macroP=0.9605 | P[set,ver,vir]=[1.000,0.958,0.923]
+22:25:32 [INFO] == experimento 29 | accuracy OOF=0.9600
+22:25:35 [INFO] exp 30 sub 1 | epochs=10000 conv=False | final_loss=0.002866 cum=215.46 mean=0.021546 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:25:35 [INFO] exp 30 sub 2 | epochs=10000 conv=False | final_loss=0.017470 cum=324.13 mean=0.032413 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,0.893,1.000]
+22:25:35 [INFO] == experimento 30 | accuracy OOF=0.9600
+22:25:38 [INFO] exp 31 sub 1 | epochs=10000 conv=False | final_loss=0.005061 cum=247.84 mean=0.024784 | acc=0.9467 macroP=0.9485 | P[set,ver,vir]=[1.000,0.957,0.889]
+22:25:38 [INFO] exp 31 sub 2 | epochs=10000 conv=False | final_loss=0.009197 cum=249.40 mean=0.024940 | acc=0.9333 macroP=0.9338 | P[set,ver,vir]=[1.000,0.885,0.917]
+22:25:39 [INFO] == experimento 31 | accuracy OOF=0.9400
+22:25:41 [INFO] exp 32 sub 1 | epochs=10000 conv=False | final_loss=0.006144 cum=232.27 mean=0.023227 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,0.893,1.000]
+22:25:41 [INFO] exp 32 sub 2 | epochs=10000 conv=False | final_loss=0.005219 cum=225.15 mean=0.022515 | acc=0.9733 macroP=0.9753 | P[set,ver,vir]=[1.000,1.000,0.926]
+22:25:42 [INFO] == experimento 32 | accuracy OOF=0.9667
+22:25:45 [INFO] exp 33 sub 1 | epochs=10000 conv=False | final_loss=0.007963 cum=271.01 mean=0.027101 | acc=0.9600 macroP=0.9643 | P[set,ver,vir]=[1.000,1.000,0.893]
+22:25:45 [INFO] exp 33 sub 2 | epochs=10000 conv=False | final_loss=0.004373 cum=220.85 mean=0.022085 | acc=0.9200 macroP=0.9355 | P[set,ver,vir]=[1.000,0.806,1.000]
+22:25:45 [INFO] == experimento 33 | accuracy OOF=0.9400
+22:25:48 [INFO] exp 34 sub 1 | epochs=10000 conv=False | final_loss=0.006991 cum=246.59 mean=0.024659 | acc=0.9333 macroP=0.9372 | P[set,ver,vir]=[1.000,0.857,0.955]
+22:25:48 [INFO] exp 34 sub 2 | epochs=10000 conv=False | final_loss=0.003520 cum=224.88 mean=0.022488 | acc=0.9467 macroP=0.9467 | P[set,ver,vir]=[1.000,0.920,0.920]
+22:25:48 [INFO] == experimento 34 | accuracy OOF=0.9400
+22:25:51 [INFO] exp 35 sub 1 | epochs=10000 conv=False | final_loss=0.003476 cum=222.30 mean=0.022230 | acc=0.9467 macroP=0.9540 | P[set,ver,vir]=[1.000,1.000,0.862]
+22:25:51 [INFO] exp 35 sub 2 | epochs=10000 conv=False | final_loss=0.011715 cum=311.01 mean=0.031101 | acc=0.9600 macroP=0.9605 | P[set,ver,vir]=[1.000,0.923,0.958]
+22:25:52 [INFO] == experimento 35 | accuracy OOF=0.9533
+22:25:55 [INFO] ===== RESUMEN GLOBAL =====
+22:25:55 [INFO] CM global (filas=real, cols=pred):
+tensor([[1748,    2,    0],
+        [   0, 1608,  142],
+        [   0,   99, 1651]])
+22:25:55 [INFO] total predicciones=5250 | accuracy global=0.9537
+22:25:55 [INFO] accuracy media por experimento=0.9537
+22:25:55 [INFO] épocas: min=10000 max=10000 media=10000
+22:25:55 [INFO] MEJOR modelo: exp 04 sub 2 | acc=1.0000 macroP=1.0000 -> results/best_model

@@ -1,14 +1,16 @@
+from __future__ import annotations
+
 import os
 import logging
 import torch
 
-from config import DEVICE, DATA_CSV, NUM_EXPERIMENTS, BASE_SEED, TEST_SIZE, RESULTS_DIR
+from config import DEVICE, DATA_CSV, NO_EXPERIMENTS as NUM_EXPERIMENTS, BASE_SEED, TEST_SIZE, RESULTS_DIR
 from data import load_iris_raw, build_tensors
 from experiment import run_experiment
-from io_results import (save_experiment, save_global, save_best_model,
-                        sub_summary_row, exp_summary_row)
+from utils.results import save_experiment, sub_summary_row, exp_summary_row
+from utils.global_results import save_global, save_best_model
 
-def setup_logger():
+def setup_logger() -> logging.Logger:
     os.makedirs(RESULTS_DIR, exist_ok=True)
     logger = logging.getLogger("iris")
     logger.setLevel(logging.INFO)
@@ -20,7 +22,7 @@ def setup_logger():
     return logger
 
 
-def better(a, b):
+def better(a: dict, b: dict | None) -> bool:
     """True si el subexperimento `a` es mejor que `b` (acc alta, luego loss baja)."""
     if b is None:
         return True
@@ -28,7 +30,7 @@ def better(a, b):
     kb = (b["metrics"]["accuracy"], -b["final_training_loss"])
     return ka > kb
 
-def run_all_experiments(verbose=True):
+def run_all_experiments(verbose: bool = True) -> torch.Tensor:
     log = setup_logger()
     feats, labels = load_iris_raw(DATA_CSV)
     X, y_idx, Y = build_tensors(feats, labels, DEVICE)
@@ -44,10 +46,10 @@ def run_all_experiments(verbose=True):
     best = None
 
     for e in range(1, NUM_EXPERIMENTS + 1):
-        experiment = run_experiment(X, y_idx, Y, e, BASE_SEED, DEVICE)
-        confussion_matrix_global += experiment["confussion_matrix"]
+        experiment = run_experiment(X, y_idx, Y, e, BASE_SEED + e, DEVICE)
+        confussion_matrix_global += experiment["confusion_matrix"]
 
-        for sid, (sub, tr, te) in enumerate([(experiment["sub1"], "A", "B"), experiment["sub2"], "B", "A"], start=1):
+        for sid, (sub, tr, te) in enumerate([(experiment["sub1"], "A", "B"), (experiment["sub2"], "B", "A")], start=1):
             finals.append(sub["final_training_loss"])
             cumulatives.append(sub["cumulative_training_loss"])
             all_epoch_losses.extend(sub["losses"])

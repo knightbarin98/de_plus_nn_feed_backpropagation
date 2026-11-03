@@ -1,0 +1,367 @@
+{
+  "V": [
+    [
+      2.6572604179382324,
+      -10.0,
+      0.16380150616168976,
+      10.0,
+      -0.8748740553855896,
+      2.2959890365600586,
+      -10.0
+    ],
+    [
+      -2.7896268367767334,
+      10.0,
+      10.0,
+      -10.0,
+      -2.224717617034912,
+      -2.3049557209014893,
+      1.4750866889953613
+    ],
+    [
+      10.0,
+      -0.762286901473999,
+      9.999998092651367,
+      10.0,
+      3.269444465637207,
+      10.0,
+      -10.0
+    ],
+    [
+      -10.0,
+      -10.0,
+      -2.0622925758361816,
+      4.697134971618652,
+      9.999994277954102,
+      -2.8218510150909424,
+      8.244714736938477
+    ],
+    [
+      -2.5755295753479004,
+      -10.0,
+      -10.0,
+      -10.0,
+      -10.0,
+      -10.0,
+      -10.0
+    ]
+  ],
+  "W": [
+    [
+      -10.0,
+      10.0,
+      -10.0
+    ],
+    [
+      10.0,
+      -10.0,
+      -10.0
+    ],
+    [
+      10.0,
+      -10.0,
+      8.831188201904297
+    ],
+    [
+      -10.0,
+      -10.0,
+      9.971118927001953
+    ],
+    [
+      -10.0,
+      -10.0,
+      10.0
+    ],
+    [
+      -7.804805755615234,
+      -10.0,
+      10.0
+    ],
+    [
+      10.0,
+      -10.0,
+      9.338221549987793
+    ],
+    [
+      -10.0,
+      10.0,
+      -10.0
+    ]
+  ],
+  "mu": [
+    5.797333717346191,
+    3.013333559036255,
+    3.7200000286102295,
+    1.185333251953125
+  ],
+  "std": [
+    0.8519738912582397,
+    0.42656248807907104,
+    1.7466920614242554,
+    0.7646687030792236
+  ],
+  "metadata": {
+    "experiment_id": 24,
+    "subexperiment_id": 1,
+    "subexperiment": "A_to_B",
+    "seed": 66,
+    "config": {
+      "NO_EXPERIMENTS": 35,
+      "K_FOLDS": 2,
+      "TRAIN_SIZE": 75,
+      "TEST_SIZE": 75,
+      "TOTAL_SAMPLE": 150,
+      "MAX_EPOCHS": 10000,
+      "EPSILON": 0.0001,
+      "LEARNING_RATE": 0.5,
+      "INPUT_FEATURE": 4,
+      "INPUT_WITH_BIAS": 5,
+      "HIDDEN_NEURONS": 7,
+      "HIDDEN_WITH_BIAS": 8,
+      "OUTPUT_NEURONS": 3,
+      "MODE_DECIMALS": 6,
+      "STD_POPULATION": true,
+      "BASE_SEED": 42,
+      "DEVICE": "cpu",
+      "TRAINER": "de",
+      "GENOME_DIMENSION": 59,
+      "DE_LOWER_BOUND": -10.0,
+      "DE_UPPER_BOUND": 10.0,
+      "DE_CONFIG": {
+        "population_size": 20,
+        "dimension": 59,
+        "F": 0.9,
+        "CR": 0.8,
+        "max_generations": 20000,
+        "tolerance": 1e-08
+      },
+      "DATA_CSV": "iris.csv",
+      "RESULTS_DIR": "results_de",
+      "ITERATION_NAME": "generation",
+      "ITERATION_START": 0,
+      "SAVE_SUBEXPERIMENT_PLOTS": true,
+      "CLASS_NAMES": [
+        "Iris-setosa",
+        "Iris-versicolor",
+        "Iris-virginica"
+      ],
+      "FEATURE_NAMES": [
+        "sepal_length",
+        "sepal_width",
+        "petal_length",
+        "petal_width"
+      ]
+    },
+    "final": {
+      "test_accuracy": 0.9866666666666667,
+      "final_training_loss": 2.863160625565797e-05,
+      "epochs_executed": 20001,
+      "converged": true
+    },
+    "metrics_test": {
+      "accuracy": 0.9866666666666667,
+      "precision_per_class": [
+        1.0,
+        0.9615384615384616,
+        1.0
+      ],
+      "recall_per_class": [
+        1.0,
+        1.0,
+        0.96
+      ],
+      "f1_per_class": [
+        1.0,
+        0.9803921568627451,
+        0.9795918367346939
+      ],
+      "macro_precision": 0.9871794871794872,
+      "macro_recall": 0.9866666666666667,
+      "macro_f1": 0.9866613311991465
+    },
+    "confusion_matrix_test": [
+      [
+        25,
+        0,
+        0
+      ],
+      [
+        0,
+        25,
+        0
+      ],
+      [
+        0,
+        1,
+        24
+      ]
+    ],
+    "train_indices": [
+      16,
+      35,
+      25,
+      14,
+      42,
+      8,
+      13,
+      0,
+      1,
+      7,
+      12,
+      30,
+      11,
+      19,
+      23,
+      34,
+      3,
+      24,
+      29,
+      33,
+      2,
+      21,
+      40,
+      48,
+      26,
+      54,
+      88,
+      66,
+      79,
+      62,
+      97,
+      86,
+      64,
+      69,
+      57,
+      68,
+      96,
+      77,
+      90,
+      89,
+      50,
+      93,
+      55,
+      70,
+      58,
+      98,
+      83,
+      73,
+      53,
+      81,
+      114,
+      112,
+      146,
+      109,
+      104,
+      135,
+      141,
+      106,
+      126,
+      116,
+      137,
+      149,
+      119,
+      129,
+      143,
+      144,
+      128,
+      140,
+      131,
+      136,
+      130,
+      123,
+      127,
+      108,
+      107
+    ],
+    "test_indices": [
+      36,
+      28,
+      17,
+      46,
+      18,
+      37,
+      22,
+      15,
+      44,
+      9,
+      27,
+      6,
+      43,
+      39,
+      49,
+      20,
+      31,
+      41,
+      32,
+      45,
+      47,
+      38,
+      10,
+      5,
+      4,
+      71,
+      80,
+      61,
+      85,
+      74,
+      82,
+      52,
+      87,
+      60,
+      72,
+      91,
+      92,
+      59,
+      76,
+      56,
+      75,
+      99,
+      94,
+      51,
+      67,
+      78,
+      63,
+      65,
+      84,
+      95,
+      121,
+      102,
+      124,
+      142,
+      115,
+      148,
+      139,
+      120,
+      111,
+      110,
+      125,
+      147,
+      100,
+      132,
+      103,
+      118,
+      101,
+      145,
+      117,
+      134,
+      133,
+      113,
+      105,
+      122,
+      138
+    ],
+    "selection_rule": "máxima accuracy de prueba; desempate: menor loss final de entrenamiento; después el primero en orden",
+    "input": "X sin estandarizar (N×4); el modelo aplica mu/std de su fold de entrenamiento y agrega el bias",
+    "feature_names": [
+      "sepal_length",
+      "sepal_width",
+      "petal_length",
+      "petal_width"
+    ],
+    "class_names": [
+      "Iris-setosa",
+      "Iris-versicolor",
+      "Iris-virginica"
+    ]
+  }
+}

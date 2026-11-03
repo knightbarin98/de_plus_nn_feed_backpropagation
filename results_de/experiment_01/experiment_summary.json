@@ -1,0 +1,71 @@
+{
+  "experiment_id": 1,
+  "experiment_seed": 43,
+  "test_accuracy_A_to_B": 0.92,
+  "test_accuracy_B_to_A": 0.92,
+  "test_accuracy_mean": 0.92,
+  "test_accuracy_aggregated": 0.92,
+  "test_accuracy_statistics": {
+    "n": 2,
+    "min": 0.92,
+    "max": 0.92,
+    "mean": 0.92,
+    "median": 0.92,
+    "mode": 0.92,
+    "mode_count": 2,
+    "n_distinct_values": 1,
+    "mode_is_informative": true,
+    "mode_rounded": 0.92,
+    "mode_rounded_count": 2,
+    "mode_round_decimals": 6,
+    "std": 0.0,
+    "std_sample": 0.0,
+    "std_population": 0.0
+  },
+  "aggregated_confusion_matrix_test": [
+    [
+      50,
+      0,
+      0
+    ],
+    [
+      0,
+      45,
+      5
+    ],
+    [
+      0,
+      7,
+      43
+    ]
+  ],
+  "aggregated_metrics_test": {
+    "accuracy": 0.92,
+    "precision_per_class": [
+      1.0,
+      0.8653846153846154,
+      0.8958333333333334
+    ],
+    "recall_per_class": [
+      1.0,
+      0.9,
+      0.86
+    ],
+    "f1_per_class": [
+      1.0,
+      0.8823529411764707,
+      0.8775510204081632
+    ],
+    "macro_precision": 0.920405982905983,
+    "macro_recall": 0.9199999999999999,
+    "macro_f1": 0.9199679871948779
+  },
+  "epochs": {
+    "A_to_B": 20001,
+    "B_to_A": 20001
+  },
+  "converged": {
+    "A_to_B": true,
+    "B_to_A": true
+  }
+}

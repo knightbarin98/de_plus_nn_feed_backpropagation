@@ -1,0 +1,71 @@
+{
+  "experiment_id": 21,
+  "experiment_seed": 63,
+  "test_accuracy_A_to_B": 0.9333333333333333,
+  "test_accuracy_B_to_A": 0.9466666666666667,
+  "test_accuracy_mean": 0.94,
+  "test_accuracy_aggregated": 0.94,
+  "test_accuracy_statistics": {
+    "n": 2,
+    "min": 0.9333333333333333,
+    "max": 0.9466666666666667,
+    "mean": 0.94,
+    "median": 0.94,
+    "mode": 0.9333333333333333,
+    "mode_count": 1,
+    "n_distinct_values": 2,
+    "mode_is_informative": false,
+    "mode_rounded": 0.933333,
+    "mode_rounded_count": 1,
+    "mode_round_decimals": 6,
+    "std": 0.006666666666666654,
+    "std_sample": 0.009428090415820616,
+    "std_population": 0.006666666666666654
+  },
+  "aggregated_confusion_matrix_test": [
+    [
+      49,
+      1,
+      0
+    ],
+    [
+      0,
+      47,
+      3
+    ],
+    [
+      0,
+      5,
+      45
+    ]
+  ],
+  "aggregated_metrics_test": {
+    "accuracy": 0.94,
+    "precision_per_class": [
+      1.0,
+      0.8867924528301887,
+      0.9375
+    ],
+    "recall_per_class": [
+      0.98,
+      0.94,
+      0.9
+    ],
+    "f1_per_class": [
+      0.98989898989899,
+      0.912621359223301,
+      0.9183673469387755
+    ],
+    "macro_precision": 0.9414308176100629,
+    "macro_recall": 0.94,
+    "macro_f1": 0.9402958986870221
+  },
+  "epochs": {
+    "A_to_B": 20001,
+    "B_to_A": 20001
+  },
+  "converged": {
+    "A_to_B": true,
+    "B_to_A": true
+  }
+}
