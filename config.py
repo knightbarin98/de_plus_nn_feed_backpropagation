@@ -50,7 +50,7 @@ class DEConfig:
 DE_CONFIG: DEConfig = DEConfig()
 
 DATA_CSV: str = "iris.csv"
-RESULTS_DIR: str = "results" if TRAINER == "backprop" else "results_de"
+RESULTS_DIR: str = "results" if TRAINER == "backprop" else "results_de_ubunutu"
 # nombre y numeración de cada fila del historial de entrenamiento
 ITERATION_NAME: str = "epoch" if TRAINER == "backprop" else "generation"
 ITERATION_START: int = 1 if TRAINER == "backprop" else 0      # DE guarda también la generación 0 (población inicial)
