@@ -1,0 +1,21 @@
+# Entorno conda para LINUX (con GPU NVIDIA / CUDA).
+# Crear:    conda env create -f environment.yml
+# Activar:  conda activate iris_nn
+# Si NO tienes GPU en Linux, usa la línea CPU comentada abajo en lugar del index CUDA.
+name: iris_nn
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - matplotlib
+  - pip:
+      # PyTorch build con CUDA 12.8 (igual que nanoGPT-python en Linux)
+      - --extra-index-url https://download.pytorch.org/whl/cu128
+      - torch==2.9.1
+      # --- alternativa SOLO CPU en Linux (comenta las dos líneas de arriba y usa): ---
+      # - --extra-index-url https://download.pytorch.org/whl/cpu
+      # - torch==2.9.1

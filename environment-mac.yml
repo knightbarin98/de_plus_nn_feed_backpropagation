@@ -1,0 +1,18 @@
+# Entorno conda para macOS (Apple Silicon o Intel, solo CPU).
+# Crear:    conda env create -f environment-mac.yml
+# Activar:  conda activate iris_nn
+# En este Mac ya tienes el entorno `makemore`, que también sirve; este archivo
+# es para reproducir el entorno de cero.
+name: iris_nn
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - matplotlib
+  - pytorch      # desde el canal pytorch
+  - cpuonly      # <-- requerido en Macs (evita intentar CUDA)
