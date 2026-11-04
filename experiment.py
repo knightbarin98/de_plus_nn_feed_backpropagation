@@ -84,6 +84,8 @@ def run_subexperiment(X: torch.Tensor, y_idx: torch.Tensor, Y: torch.Tensor, tra
     Y_tr = Y[train_idx]
     yi_te = y_idx[test_idx]
 
+    mu, std = fit_standardizer(X_tr)
+
     Xtr_aug = add_bias(X_tr)
     Xte_aug = add_bias(X_te)
 
