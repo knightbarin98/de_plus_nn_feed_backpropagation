@@ -36,7 +36,7 @@ def extremes(items: list, key: str) -> dict:
 
 
 def global_statistics(cm_global: torch.Tensor, finals: list, cumulatives: list, all_epoch_losses: list,
-                      sub_rows: list, exp_rows: list) -> dict:
+                      all_epoch_test_losses: list, sub_rows: list, exp_rows: list) -> dict:
     sub_light = [{k: r[k] for k in ("experiment_id", "subexperiment", "test_accuracy", "final_training_loss")}
                  for r in sub_rows]
     exp_light = [{"experiment_id": e["experiment_id"], "test_accuracy_aggregated": e["test_accuracy_aggregated"]}
@@ -46,6 +46,7 @@ def global_statistics(cm_global: torch.Tensor, finals: list, cumulatives: list, 
             "test_accuracy": describe([r["test_accuracy"] for r in sub_rows]),
             "macro_precision": describe([r["macro_precision"] for r in sub_rows]),
             "final_training_loss": describe(finals),
+            "final_test_loss": describe([r["final_test_loss"] for r in sub_rows]),
             "cumulative_training_loss": describe(cumulatives),
             "epochs_executed": describe([r["epochs_executed"] for r in sub_rows]),
             "extremes_test_accuracy": extremes(sub_light, "test_accuracy"),
@@ -56,6 +57,7 @@ def global_statistics(cm_global: torch.Tensor, finals: list, cumulatives: list, 
             "extremes": extremes(exp_light, "test_accuracy_aggregated"),
         },
         "all_epochs_training_loss": describe(all_epoch_losses),
+        "all_epochs_test_loss": describe(all_epoch_test_losses),
         "total_epoch_rows": len(all_epoch_losses),
         "global_confusion_matrix_test": cm_global,
         "global_test_accuracy_from_confusion": float(torch.diagonal(cm_global).sum()) / float(cm_global.sum()),
@@ -64,17 +66,18 @@ def global_statistics(cm_global: torch.Tensor, finals: list, cumulatives: list, 
 
 
 def save_global(cm_global: torch.Tensor, finals: list, cumulatives: list, all_epoch_losses: list,
-                sub_rows: list, exp_rows: list) -> dict:
+                all_epoch_test_losses: list, sub_rows: list, exp_rows: list) -> dict:
     global_dir = os.path.join(RESULTS_DIR, "global")
     os.makedirs(global_dir, exist_ok=True)
     write_json(os.path.join(global_dir, "config.json"), config.to_dict())
 
     # todas las épocas de los 70 subexperimentos en un solo archivo comprimido
     curves = split_curves(all_epoch_losses, sub_rows)
+    test_curves = split_curves(all_epoch_test_losses, sub_rows)
     writer = GlobalEpochsWriter(os.path.join(global_dir, "all_epochs.csv.gz"))
-    for r, losses in zip(sub_rows, curves):
+    for r, losses, test_losses in zip(sub_rows, curves, test_curves):
         train_set, test_set = r["subexperiment"].split("_to_")
-        writer.append(r["experiment_id"], r["subexperiment_id"], train_set, test_set, losses)
+        writer.append(r["experiment_id"], r["subexperiment_id"], train_set, test_set, losses, test_losses)
     writer.close()
 
     write_csv(os.path.join(global_dir, "subexperiments.csv"), list(sub_rows[0]), [list(r.values()) for r in sub_rows])
@@ -83,7 +86,8 @@ def save_global(cm_global: torch.Tensor, finals: list, cumulatives: list, all_ep
     # matriz de confusión global: suma de los 70 subexperimentos
     write_confusion_csv(os.path.join(global_dir, "confusion_matrix_test_global.csv"), cm_global, CLASS_NAMES)
 
-    stats = global_statistics(cm_global, finals, cumulatives, all_epoch_losses, sub_rows, exp_rows)
+    stats = global_statistics(cm_global, finals, cumulatives, all_epoch_losses, all_epoch_test_losses,
+                              sub_rows, exp_rows)
     plot_global(sub_rows, exp_rows, cm_global, curves, os.path.join(global_dir, "plots"))
     write_json(os.path.join(global_dir, "global_statistics.json"), stats)
     return stats
@@ -94,24 +98,26 @@ def save_best_model(best: dict, X: torch.Tensor, y_idx: torch.Tensor) -> str:
     if os.path.isdir(best_dir):
         shutil.rmtree(best_dir)
     name = dict(SUBEXPERIMENTS)[f"sub{best['subexperiment_id']}"]
-    network = MLPNetwork(V=best["V"], W=best["W"], mu=best["mu"], std=best["std"])
+    network = MLPNetwork(V=best["V"], W=best["W"])
     metadata = {
         "experiment_id": best["experiment_id"], "subexperiment_id": best["subexperiment_id"],
         "subexperiment": name, "seed": best["seed"],
         "config": config.to_dict(),
         "final": {"test_accuracy": best["metrics"]["accuracy"],
                   "final_training_loss": best["final_training_loss"],
+                  "final_test_loss": best["final_test_loss"],
                   "epochs_executed": best["epochs_executed"], "converged": best["converged"]},
         "metrics_test": best["metrics"],
         "confusion_matrix_test": best["confusion_matrix"].tolist(),
         "train_indices": best["train_idx"].tolist(), "test_indices": best["test_idx"].tolist(),
         "selection_rule": "máxima accuracy de prueba; desempate: menor loss final de entrenamiento; "
                           "después el primero en orden",
-        "input": "X sin estandarizar (N×4); el modelo aplica mu/std de su fold de entrenamiento y agrega el bias",
+        "input": "X original (N×4); el modelo solo agrega la columna de bias",
         "feature_names": FEATURE_NAMES, "class_names": CLASS_NAMES,
     }
-    save_model(best_dir, network, metadata, extra_tensors={"losses": torch.tensor(best["losses"])})
-    write_epochs_csv(os.path.join(best_dir, "epochs.csv"), best["losses"])
+    save_model(best_dir, network, metadata, extra_tensors={"losses": torch.tensor(best["losses"]),
+                                                     "test_losses": torch.tensor(best["test_losses"])})
+    write_epochs_csv(os.path.join(best_dir, "epochs.csv"), best["losses"], best["test_losses"])
     write_json(os.path.join(best_dir, "summary.json"), subexperiment_summary(best, y_idx))
     plot_subexperiment(best, f"Mejor · {subexperiment_title(best['experiment_id'], name)}", X, y_idx,
                        os.path.join(best_dir, "plots"))

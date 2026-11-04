@@ -4,24 +4,29 @@ import torch
 
 from config import (MAX_EPOCHS, EPSILON, LEARNING_RATE, HIDDEN_NEURONS, CLASS_NAMES, TRAINER)
 from network import (init_weights, forward, mse_loss, backward, update_weights)
-from data import fit_standardizer, apply_standarizer, add_bias
-from de_training import train_subexperiment_de
+from data import add_bias
+from de_training import test_loss_history, train_subexperiment_de
 from utils.metrics import classification_metrics
+from utils.statistics import describe
 
 def train_subexperiment(X_aug_train: torch.Tensor, Y_train: torch.Tensor, seed: int, device: torch.device,
                         alpha: float = LEARNING_RATE, max_epochs: int = MAX_EPOCHS,
-                        epsilon: float = EPSILON) -> tuple[torch.Tensor, torch.Tensor, list[float], bool]:
+                        epsilon: float = EPSILON, *, X_aug_test: torch.Tensor,
+                        Y_test: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor, list[float], bool, list[float]]:
     """
         Entrena UNA red desde cero (reinicializa pesos con `seed`).
-        Devuelve V, W, errores (lista float por época), convergencia (bool).
+        Devuelve V, W, errores (lista float por época), convergencia (bool), errores de prueba por época.
+        El conjunto de prueba solo se evalúa: no interviene en los gradientes ni en el criterio de paro.
     """
     V, W = init_weights(seed, device)
     losses = []
+    test_losses = []
     converged = False
     for epoch in range(1, max_epochs + 1):
         Y_hat, cache = forward(X_aug_train,V, W)
         E = mse_loss(Y_hat, Y_train).item()
         losses.append(E)
+        test_losses.append(mse_loss(forward(X_aug_test, V, W)[0], Y_test).item())
 
         #criterio epsilon 
         if E <= epsilon:
@@ -30,7 +35,7 @@ def train_subexperiment(X_aug_train: torch.Tensor, Y_train: torch.Tensor, seed: 
         dE_dV, dE_dW = backward(X_aug_train, Y_train, W, cache)
         update_weights(V, W, dE_dV, dE_dW)
 
-    return V, W, losses, converged
+    return V, W, losses, converged, test_losses
 
 def evaluate(X_aug_test: torch.Tensor, y_idx_test: torch.Tensor, V: torch.Tensor, W: torch.Tensor) -> dict:
     """
@@ -81,18 +86,19 @@ def check_folds(idx_A: torch.Tensor, idx_B: torch.Tensor, y_idx: torch.Tensor, N
 def run_subexperiment(X: torch.Tensor, y_idx: torch.Tensor, Y: torch.Tensor, train_idx: torch.Tensor,
                       test_idx: torch.Tensor, seed: int, device: torch.device) -> dict:
     X_tr, X_te = X[train_idx], X[test_idx]
-    Y_tr = Y[train_idx]
+    Y_tr, Y_te = Y[train_idx], Y[test_idx]
     yi_te = y_idx[test_idx]
-
-    mu, std = fit_standardizer(X_tr)
 
     Xtr_aug = add_bias(X_tr)
     Xte_aug = add_bias(X_te)
 
+    de_result = None
     if TRAINER == "de":
-        V, W, losses, converged = train_subexperiment_de(Xtr_aug, Y_tr, seed, device)
+        V, W, losses, converged, de_result = train_subexperiment_de(Xtr_aug, Y_tr, seed, device)
+        test_losses = test_loss_history(Xte_aug, Y_te, de_result.best_position_history)
     else:
-        V, W, losses, converged = train_subexperiment(Xtr_aug, Y_tr, seed, device)
+        V, W, losses, converged, test_losses = train_subexperiment(Xtr_aug, Y_tr, seed, device,
+                                                                   X_aug_test=Xte_aug, Y_test=Y_te)
 
     ev = evaluate(Xte_aug, yi_te, V, W)
     confussion_matrix = compute_confusion_matrix(ev["y_true"], ev["y_pred"])
@@ -101,17 +107,21 @@ def run_subexperiment(X: torch.Tensor, y_idx: torch.Tensor, Y: torch.Tensor, tra
     return {
         "seed": seed,
         "losses": losses,
+        "test_losses": test_losses,
+        "train_loss_statistics": describe(losses),
+        "test_loss_statistics": describe(test_losses),
         "converged": converged,
         "epochs_executed": len(losses),
         "final_training_loss": losses[-1],
+        "final_test_loss": test_losses[-1],
         "cumulative_training_loss": float(sum(losses)),
         "mean_training_loss": float(sum(losses) / len(losses)),
         "eval": ev,
         "confusion_matrix": confussion_matrix,
         "metrics": metrics,
-        "mu": mu.cpu(), "std": std.cpu(),
         "train_idx": train_idx.cpu(), "test_idx": test_idx.cpu(),
         "V": V.detach().cpu(), "W": W.detach().cpu(),   # mejor-modelo / reproducción
+        "de_result": de_result,                         # OptimizationResult del DE (None con backprop)
     }
 
 def run_experiment(X: torch.Tensor, y_idx: torch.Tensor, Y: torch.Tensor, experiment_id: int, base_seed: int,
@@ -127,6 +137,9 @@ def run_experiment(X: torch.Tensor, y_idx: torch.Tensor, Y: torch.Tensor, experi
 
     return {"experiment_id": experiment_id, "seed": base_seed,
             "idx_A": idx_A.cpu(), "idx_B": idx_B.cpu(),
-            "sub1": subexperiment_1, "sub2": subexperiment_2, "confusion_matrix": confussion_matrix_experimento}
+            "sub1": subexperiment_1, "sub2": subexperiment_2, "confusion_matrix": confussion_matrix_experimento,
+            # todas las generaciones/épocas de los dos subexperimentos
+            "train_loss_statistics": describe(subexperiment_1["losses"] + subexperiment_2["losses"]),
+            "test_loss_statistics": describe(subexperiment_1["test_losses"] + subexperiment_2["test_losses"])}
 
 

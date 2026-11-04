@@ -9,6 +9,7 @@ from data import load_iris_raw, build_tensors
 from experiment import run_experiment
 from utils.results import save_experiment, sub_summary_row, exp_summary_row
 from utils.global_results import save_global, save_best_model
+from utils.statistics import loss_statistics_line
 
 def setup_logger() -> logging.Logger:
     os.makedirs(RESULTS_DIR, exist_ok=True)
@@ -40,7 +41,7 @@ def run_all_experiments(verbose: bool = True) -> torch.Tensor:
     log.info("Iris cargado: %s muestras, device=%s", X.shape[0], DEVICE)
 
     confussion_matrix_global = torch.zeros(3,3,dtype=torch.long)
-    finals, cumulatives, all_epoch_losses = [], [], []
+    finals, cumulatives, all_epoch_losses, all_epoch_test_losses = [], [], [], []
     sub_rows, exp_rows = [], []
     epochs_list, accuracies = [], []
     best = None
@@ -53,6 +54,7 @@ def run_all_experiments(verbose: bool = True) -> torch.Tensor:
             finals.append(sub["final_training_loss"])
             cumulatives.append(sub["cumulative_training_loss"])
             all_epoch_losses.extend(sub["losses"])
+            all_epoch_test_losses.extend(sub["test_losses"])
             epochs_list.append(sub["epochs_executed"])
             sub_rows.append(sub_summary_row(e, sid, sub, tr, te))
             assert sub["eval"]["y_true"].shape[0] == TEST_SIZE
@@ -65,6 +67,10 @@ def run_all_experiments(verbose: bool = True) -> torch.Tensor:
                      sub["final_training_loss"], sub["cumulative_training_loss"],
                      sub["mean_training_loss"], m["accuracy"], m["macro_precision"],
                      *m["precision_per_class"])
+            log.info("exp %02d sub %d | %s", e, sid,
+                     loss_statistics_line(sub["train_loss_statistics"], sub["test_loss_statistics"]))
+            if sub["de_result"] is not None:
+                log.info("exp %02d sub %d | resultado DE: %s", e, sid, sub["de_result"])
 
             # seguimiento del mejor modelo
             if better(sub, best):
@@ -76,16 +82,20 @@ def run_all_experiments(verbose: bool = True) -> torch.Tensor:
         exp_rows.append(exp_summary_row(experiment, aggregate))
         accuracies.append(aggregate["accuracy"])
         if verbose:
-            log.info("== experimento %02d | accuracy OOF=%.4f", e, aggregate["accuracy"])
+            log.info("== experimento %02d | accuracy OOF=%.4f | %s", e, aggregate["accuracy"],
+                     loss_statistics_line(experiment["train_loss_statistics"], experiment["test_loss_statistics"]))
 
     # validaciones globales
     assert NUM_EXPERIMENTS == 35 and len(sub_rows) == 70
     assert confussion_matrix_global.sum().item() == 5250, confussion_matrix_global.sum().item()
 
-    save_global(confussion_matrix_global, finals, cumulatives, all_epoch_losses, sub_rows, exp_rows)
+    stats = save_global(confussion_matrix_global, finals, cumulatives, all_epoch_losses, all_epoch_test_losses,
+                        sub_rows, exp_rows)
     best_dir = save_best_model(best, X_cpu, y_idx_cpu)
 
     log.info("===== RESUMEN GLOBAL =====")
+    log.info("todos los experimentos | %s",
+             loss_statistics_line(stats["all_epochs_training_loss"], stats["all_epochs_test_loss"]))
     log.info("CM global (filas=real, cols=pred):\n%s", confussion_matrix_global)
     log.info("total predicciones=%d | accuracy global=%.4f",
              confussion_matrix_global.sum().item(), confussion_matrix_global.diag().sum().item() / 5250)

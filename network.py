@@ -5,7 +5,7 @@ from dataclasses import dataclass
 import torch
 
 from config import (INPUT_WITH_BIAS, HIDDEN_NEURONS, HIDDEN_WITH_BIAS, OUTPUT_NEURONS, LEARNING_RATE)
-from data import add_bias, apply_standarizer
+from data import add_bias
 
 def init_weights(seed: int, device: torch.device) -> tuple[torch.Tensor, torch.Tensor]:
     """Inicializacion aleatoria uniforme"""
@@ -91,12 +91,10 @@ def update_weights(V: torch.Tensor, W: torch.Tensor, dE_dV: torch.Tensor, dE_dW:
 class MLPNetwork:
     V: torch.Tensor          # (5, 7)  entrada+bias -> oculta
     W: torch.Tensor          # (8, 3)  oculta+bias -> salida
-    mu: torch.Tensor         # (4,)    media del fold de entrenamiento
-    std: torch.Tensor        # (4,)    desviación poblacional del fold de entrenamiento
 
     def prepare(self, X: torch.Tensor) -> torch.Tensor:
-        # (N×4) estandarizada con mu/std de entrenamiento -> + columna de unos -> (N×5)   ej. (75×4) -> (75×5)
-        return add_bias(apply_standarizer(X, self.mu, self.std))
+        # (N×4) + columna de unos -> (N×5)   ej. (75×4) -> (75×5)
+        return add_bias(X)
 
     def hidden(self, X: torch.Tensor) -> torch.Tensor:
         _, cache = forward(self.prepare(X), self.V, self.W)

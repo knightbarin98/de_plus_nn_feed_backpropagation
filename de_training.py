@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import torch
 
-from algorithm import DifferentialEvolution
+from algorithm import DifferentialEvolution, OptimizationResult
 from config import (DE_CONFIG, DE_LOWER_BOUND, DE_UPPER_BOUND, EPSILON, HIDDEN_NEURONS, HIDDEN_WITH_BIAS,
                     INPUT_WITH_BIAS, OUTPUT_NEURONS, DEConfig)
 from network import forward, mse_loss, sigmoid
@@ -43,12 +43,23 @@ def network_error_population(X_aug: torch.Tensor, Y: torch.Tensor, population: t
     return (diff * diff).sum(dim=(1, 2)) / (2.0 * N)    # suma por red -> (P,)
 
 
+def test_loss_history(X_aug_test: torch.Tensor, Y_test: torch.Tensor, best_position_history: list[torch.Tensor],
+                      chunk_size: int = 1000) -> list[float]:
+    # error de prueba del mejor genoma de cada generación, calculado al terminar: el DE nunca ve el conjunto de prueba
+    genomes = torch.stack(best_position_history)      # (G+1×d) en CPU
+    errors = [network_error_population(X_aug_test, Y_test, chunk.to(X_aug_test.device))
+              for chunk in torch.split(genomes, chunk_size)]
+    return torch.cat(errors).cpu().tolist()
+
+
 def train_subexperiment_de(X_aug_train: torch.Tensor, Y_train: torch.Tensor, seed: int, device: torch.device,
                            de_config: DEConfig = DE_CONFIG,
-                           epsilon: float = EPSILON) -> tuple[torch.Tensor, torch.Tensor, list[float], bool]:
+                           epsilon: float = EPSILON) -> tuple[torch.Tensor, torch.Tensor, list[float], bool,
+                                                              OptimizationResult]:
     """
         Entrena UNA red con Evolución Diferencial (DE/rand/1/bin), desde una población nueva (`seed`).
-        Devuelve lo mismo que train_subexperiment: V, W, errores (mejor fitness por generación), convergencia.
+        Devuelve lo mismo que train_subexperiment: V, W, errores (mejor fitness por generación), convergencia;
+        y además el OptimizationResult del DE.
     """
     rng = torch.Generator(device=device).manual_seed(seed)
 
@@ -66,4 +77,4 @@ def train_subexperiment_de(X_aug_train: torch.Tensor, Y_train: torch.Tensor, see
     assert abs(E - result.best_fitness) <= 1e-5 * max(1.0, E), (E, result.best_fitness)
 
     converged = result.best_fitness <= epsilon
-    return V, W, losses, converged
+    return V, W, losses, converged, result

@@ -203,7 +203,7 @@ def plot_histogram(values, title: str, xlabel: str, path: str, color: str | None
 
 def plot_subexperiment(sub: dict, title: str, X: torch.Tensor, y_idx: torch.Tensor, plot_dir: str) -> None:
     names = display_names(CLASS_NAMES)
-    network = MLPNetwork(V=sub["V"], W=sub["W"], mu=sub["mu"], std=sub["std"])
+    network = MLPNetwork(V=sub["V"], W=sub["W"])
     X_test = X[sub["test_idx"]]                       # (75×4) en el orden del fold
     losses = sub["losses"]
     ev = sub["eval"]

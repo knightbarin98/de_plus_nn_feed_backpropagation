@@ -13,8 +13,6 @@ def save_model(directory: str, network: MLPNetwork, metadata: dict, extra_tensor
     payload = {
         "V": network.V.detach().cpu(),
         "W": network.W.detach().cpu(),
-        "mu": network.mu.detach().cpu(),
-        "std": network.std.detach().cpu(),
         "metadata": metadata,
     }
     if extra_tensors:
@@ -23,7 +21,7 @@ def save_model(directory: str, network: MLPNetwork, metadata: dict, extra_tensor
     torch.save(payload, path)
     # Copia legible por humanos (sin los tensores grandes)
     write_json(os.path.join(directory, "model.json"), {
-        "V": payload["V"], "W": payload["W"], "mu": payload["mu"], "std": payload["std"],
+        "V": payload["V"], "W": payload["W"],
         "metadata": metadata,
     })
     return path
@@ -35,7 +33,5 @@ def load_model(path: str, device: torch.device | str = "cpu",
     net = MLPNetwork(
         V=payload["V"].to(device=device, dtype=dtype),
         W=payload["W"].to(device=device, dtype=dtype),
-        mu=payload["mu"].to(device=device, dtype=dtype),
-        std=payload["std"].to(device=device, dtype=dtype),
     )
     return net, payload

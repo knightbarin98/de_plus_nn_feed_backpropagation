@@ -32,7 +32,6 @@ def subexperiment_summary(sub: dict, y_idx: torch.Tensor) -> dict:
         "seed": sub["seed"],
         "train_class_counts": class_counts(y_idx[sub["train_idx"]], N_CLASSES),
         "test_class_counts": class_counts(y_idx[sub["test_idx"]], N_CLASSES),
-        "standardizer": {"mu": sub["mu"], "std": sub["std"]},
         "training": {
             "trainer": TRAINER,
             "de_strategy": "DE/rand/1/bin" if TRAINER == "de" else None,
@@ -48,26 +47,26 @@ def subexperiment_summary(sub: dict, y_idx: torch.Tensor) -> dict:
             "V_final": sub["V"],
             "W_final": sub["W"],
         },
-        "final": {"test_accuracy": sub["eval"]["accuracy"]},
+        "final": {"test_accuracy": sub["eval"]["accuracy"], "test_loss": sub["final_test_loss"]},
         "confusion_matrix_test": sub["confusion_matrix"],
         "metrics_test": sub["metrics"],
-        "train_loss_statistics": describe(losses),
+        "train_loss_statistics": sub["train_loss_statistics"],
+        "test_loss_statistics": sub["test_loss_statistics"],
     }
 
 
 def save_subexperiment(sub: dict, title: str, X: torch.Tensor, y_idx: torch.Tensor, out_dir: str) -> None:
     os.makedirs(out_dir, exist_ok=True)
-    write_epochs_csv(os.path.join(out_dir, "epochs.csv"), sub["losses"])
+    write_epochs_csv(os.path.join(out_dir, "epochs.csv"), sub["losses"], sub["test_losses"])
     write_json(os.path.join(out_dir, "summary.json"), subexperiment_summary(sub, y_idx))
 
-    torch.save({"V": sub["V"], "W": sub["W"], "mu": sub["mu"], "std": sub["std"]},
-               os.path.join(out_dir, "weights.pt"))
+    torch.save({"V": sub["V"], "W": sub["W"]}, os.path.join(out_dir, "weights.pt"))
     write_confusion_csv(os.path.join(out_dir, "confusion_matrix_test.csv"), sub["confusion_matrix"], CLASS_NAMES)
 
     # salidas de las 3 neuronas y activaciones de las neuronas ocultas de cada flor de prueba
     test_idx = sub["test_idx"]
     ev = sub["eval"]
-    Z_test = MLPNetwork(V=sub["V"], W=sub["W"], mu=sub["mu"], std=sub["std"]).hidden(X[test_idx])   # (75×7)
+    Z_test = MLPNetwork(V=sub["V"], W=sub["W"]).hidden(X[test_idx])   # (75×7)
     rows = [[int(test_idx[n]), int(ev["y_true"][n]), int(ev["y_pred"][n])]
             + ev["outputs"][n].tolist() + Z_test[n].tolist()
             for n in range(test_idx.numel())]
@@ -96,6 +95,8 @@ def experiment_summary(experiment: dict, aggregate: dict) -> dict:
         "test_accuracy_mean": sum(acc) / 2,
         "test_accuracy_aggregated": aggregate["accuracy"],
         "test_accuracy_statistics": describe(acc),
+        "train_loss_statistics": experiment["train_loss_statistics"],
+        "test_loss_statistics": experiment["test_loss_statistics"],
         "aggregated_confusion_matrix_test": aggregate["confusion_matrix"],
         "aggregated_metrics_test": aggregate["metrics"],
         "epochs": {"A_to_B": s1["epochs_executed"], "B_to_A": s2["epochs_executed"]},
@@ -131,6 +132,12 @@ def save_experiment(experiment: dict, X: torch.Tensor, y_idx: torch.Tensor) -> d
     return aggregate
 
 
+def loss_statistics_columns(train_stats: dict, test_stats: dict) -> dict:
+    return {"train_loss_mean": train_stats["mean"], "train_loss_median": train_stats["median"],
+            "train_loss_std": train_stats["std"], "test_loss_mean": test_stats["mean"],
+            "test_loss_median": test_stats["median"], "test_loss_std": test_stats["std"]}
+
+
 def sub_summary_row(experiment_id: int, subexperiment_id: int, sub: dict, train_set: str, test_set: str) -> dict:
     m = sub["metrics"]
     row = {
@@ -140,6 +147,8 @@ def sub_summary_row(experiment_id: int, subexperiment_id: int, sub: dict, train_
         "final_training_loss": sub["final_training_loss"],
         "cumulative_training_loss": sub["cumulative_training_loss"],
         "mean_training_loss": sub["mean_training_loss"],
+        "final_test_loss": sub["final_test_loss"],
+        **loss_statistics_columns(sub["train_loss_statistics"], sub["test_loss_statistics"]),
         "test_accuracy": m["accuracy"], "macro_precision": m["macro_precision"],
         "macro_recall": m["macro_recall"], "macro_f1": m["macro_f1"],
     }
@@ -155,4 +164,5 @@ def exp_summary_row(experiment: dict, aggregate: dict) -> dict:
         "experiment_id": experiment["experiment_id"], "seed": experiment["seed"],
         "test_accuracy_A_to_B": acc_ab, "test_accuracy_B_to_A": acc_ba,
         "test_accuracy_mean": (acc_ab + acc_ba) / 2, "test_accuracy_aggregated": aggregate["accuracy"],
+        **loss_statistics_columns(experiment["train_loss_statistics"], experiment["test_loss_statistics"]),
     }

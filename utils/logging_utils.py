@@ -11,7 +11,7 @@ import torch
 from config import ITERATION_NAME, ITERATION_START
 
 FLOAT_FMT = "{:.10g}"
-EPOCH_COLUMNS = [ITERATION_NAME, "train_loss"]
+EPOCH_COLUMNS = [ITERATION_NAME, "train_loss", "test_loss"]
 
 
 def _fmt(v):
@@ -47,10 +47,11 @@ def write_csv(path: str, header: list, rows) -> None:
             w.writerow([_fmt(v) for v in row])
 
 
-def write_epochs_csv(path: str, losses: list) -> None:
+def write_epochs_csv(path: str, losses: list, test_losses: list) -> None:
     # backprop: la época 1 es el loss de los pesos iniciales (antes de la primera actualización)
     # DE: la generación 0 es el mejor individuo de la población inicial
-    write_csv(path, EPOCH_COLUMNS, [[epoch, loss] for epoch, loss in enumerate(losses, start=ITERATION_START)])
+    write_csv(path, EPOCH_COLUMNS, [[epoch, loss, test_loss] for epoch, (loss, test_loss)
+                                    in enumerate(zip(losses, test_losses), start=ITERATION_START)])
 
 
 def write_confusion_csv(path: str, cm: torch.Tensor, class_names: list) -> None:
@@ -67,9 +68,9 @@ class GlobalEpochsWriter:
         self.rows_written = 0
 
     def append(self, experiment_id: int, subexperiment_id: int, train_set: str, test_set: str,
-               losses: list) -> None:
-        for epoch, loss in enumerate(losses, start=ITERATION_START):
-            self._w.writerow([experiment_id, subexperiment_id, train_set, test_set, epoch, _fmt(loss)])
+               losses: list, test_losses: list) -> None:
+        for epoch, (loss, test_loss) in enumerate(zip(losses, test_losses), start=ITERATION_START):
+            self._w.writerow([experiment_id, subexperiment_id, train_set, test_set, epoch, _fmt(loss), _fmt(test_loss)])
         self.rows_written += len(losses)
 
     def close(self) -> None:

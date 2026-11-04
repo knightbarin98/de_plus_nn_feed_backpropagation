@@ -47,6 +47,12 @@ def std(v: torch.Tensor, ddof: int) -> float:
     return math.sqrt(float((dev * dev).sum()) / (n - ddof))   # (n,) al cuadrado -> suma -> escalar
 
 
+def loss_statistics_line(train_stats: dict, test_stats: dict) -> str:
+    def part(name: str, stats: dict) -> str:
+        return f"{name} media={stats['mean']:.6g} mediana={stats['median']:.6g} std={stats['std']:.6g}"
+    return f"{part('train_loss', train_stats)} | {part('test_loss', test_stats)}"
+
+
 def describe(values, round_decimals: int = MODE_DECIMALS, population: bool = STD_POPULATION) -> dict:
     v = _as_1d_float64(values)
     s = torch.sort(v).values
