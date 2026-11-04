@@ -1,0 +1,47 @@
+{
+  "NO_EXPERIMENTS": 35,
+  "K_FOLDS": 2,
+  "TRAIN_SIZE": 75,
+  "TEST_SIZE": 75,
+  "TOTAL_SAMPLE": 150,
+  "MAX_EPOCHS": 10000,
+  "EPSILON": 0.0001,
+  "LEARNING_RATE": 0.5,
+  "INPUT_FEATURE": 4,
+  "INPUT_WITH_BIAS": 5,
+  "HIDDEN_NEURONS": 7,
+  "HIDDEN_WITH_BIAS": 8,
+  "OUTPUT_NEURONS": 3,
+  "MODE_DECIMALS": 6,
+  "STD_POPULATION": true,
+  "BASE_SEED": 42,
+  "DEVICE": "cuda",
+  "TRAINER": "de",
+  "GENOME_DIMENSION": 59,
+  "DE_LOWER_BOUND": -1,
+  "DE_UPPER_BOUND": 1,
+  "DE_CONFIG": {
+    "population_size": 20,
+    "dimension": 59,
+    "F": 0.9,
+    "CR": 0.8,
+    "max_generations": 20000,
+    "tolerance": 1e-08
+  },
+  "DATA_CSV": "iris.csv",
+  "RESULTS_DIR": "results_de_ubunutu_2",
+  "ITERATION_NAME": "generation",
+  "ITERATION_START": 0,
+  "SAVE_SUBEXPERIMENT_PLOTS": true,
+  "CLASS_NAMES": [
+    "Iris-setosa",
+    "Iris-versicolor",
+    "Iris-virginica"
+  ],
+  "FEATURE_NAMES": [
+    "sepal_length",
+    "sepal_width",
+    "petal_length",
+    "petal_width"
+  ]
+}
