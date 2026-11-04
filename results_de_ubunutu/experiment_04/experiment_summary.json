@@ -1,31 +1,31 @@
 {
   "experiment_id": 4,
   "experiment_seed": 46,
-  "test_accuracy_A_to_B": 0.92,
-  "test_accuracy_B_to_A": 0.96,
-  "test_accuracy_mean": 0.94,
-  "test_accuracy_aggregated": 0.94,
+  "test_accuracy_A_to_B": 0.96,
+  "test_accuracy_B_to_A": 0.9866666666666667,
+  "test_accuracy_mean": 0.9733333333333334,
+  "test_accuracy_aggregated": 0.9733333333333334,
   "test_accuracy_statistics": {
     "n": 2,
-    "min": 0.92,
-    "max": 0.96,
-    "mean": 0.94,
-    "median": 0.94,
-    "mode": 0.92,
+    "min": 0.96,
+    "max": 0.9866666666666667,
+    "mean": 0.9733333333333334,
+    "median": 0.9733333333333334,
+    "mode": 0.96,
     "mode_count": 1,
     "n_distinct_values": 2,
     "mode_is_informative": false,
-    "mode_rounded": 0.92,
+    "mode_rounded": 0.96,
     "mode_rounded_count": 1,
     "mode_round_decimals": 6,
-    "std": 0.019999999999999962,
-    "std_sample": 0.02828427124746185,
-    "std_population": 0.019999999999999962
+    "std": 0.013333333333333364,
+    "std_sample": 0.01885618083164131,
+    "std_population": 0.013333333333333364
   },
   "aggregated_confusion_matrix_test": [
     [
-      49,
-      1,
+      50,
+      0,
       0
     ],
     [
@@ -35,37 +35,37 @@
     ],
     [
       0,
-      4,
-      46
+      0,
+      50
     ]
   ],
   "aggregated_metrics_test": {
-    "accuracy": 0.94,
+    "accuracy": 0.9733333333333334,
     "precision_per_class": [
       1.0,
-      0.9019607843137255,
-      0.92
+      1.0,
+      0.9259259259259259
     ],
     "recall_per_class": [
-      0.98,
+      1.0,
       0.92,
-      0.92
+      1.0
     ],
     "f1_per_class": [
-      0.98989898989899,
-      0.9108910891089109,
-      0.92
+      1.0,
+      0.9583333333333334,
+      0.9615384615384615
     ],
-    "macro_precision": 0.9406535947712418,
-    "macro_recall": 0.94,
-    "macro_f1": 0.9402633596693003
+    "macro_precision": 0.9753086419753086,
+    "macro_recall": 0.9733333333333333,
+    "macro_f1": 0.9732905982905983
   },
   "epochs": {
     "A_to_B": 20001,
     "B_to_A": 20001
   },
   "converged": {
-    "A_to_B": true,
+    "A_to_B": false,
     "B_to_A": false
   }
 }

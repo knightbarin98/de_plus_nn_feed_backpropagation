@@ -1,31 +1,31 @@
 {
   "experiment_id": 21,
   "experiment_seed": 63,
-  "test_accuracy_A_to_B": 0.88,
-  "test_accuracy_B_to_A": 0.9333333333333333,
-  "test_accuracy_mean": 0.9066666666666667,
-  "test_accuracy_aggregated": 0.9066666666666666,
+  "test_accuracy_A_to_B": 0.96,
+  "test_accuracy_B_to_A": 0.9733333333333334,
+  "test_accuracy_mean": 0.9666666666666667,
+  "test_accuracy_aggregated": 0.9666666666666667,
   "test_accuracy_statistics": {
     "n": 2,
-    "min": 0.88,
-    "max": 0.9333333333333333,
-    "mean": 0.9066666666666667,
-    "median": 0.9066666666666667,
-    "mode": 0.88,
+    "min": 0.96,
+    "max": 0.9733333333333334,
+    "mean": 0.9666666666666667,
+    "median": 0.9666666666666667,
+    "mode": 0.96,
     "mode_count": 1,
     "n_distinct_values": 2,
     "mode_is_informative": false,
-    "mode_rounded": 0.88,
+    "mode_rounded": 0.96,
     "mode_rounded_count": 1,
     "mode_round_decimals": 6,
-    "std": 0.026666666666666672,
-    "std_sample": 0.03771236166328254,
-    "std_population": 0.026666666666666672
+    "std": 0.00666666666666671,
+    "std_sample": 0.009428090415820694,
+    "std_population": 0.00666666666666671
   },
   "aggregated_confusion_matrix_test": [
     [
-      49,
-      1,
+      50,
+      0,
       0
     ],
     [
@@ -35,37 +35,37 @@
     ],
     [
       0,
-      9,
-      41
+      1,
+      49
     ]
   ],
   "aggregated_metrics_test": {
-    "accuracy": 0.9066666666666666,
+    "accuracy": 0.9666666666666667,
     "precision_per_class": [
       1.0,
-      0.8214285714285714,
-      0.9111111111111111
+      0.9787234042553191,
+      0.9245283018867925
     ],
     "recall_per_class": [
-      0.98,
+      1.0,
       0.92,
-      0.82
+      0.98
     ],
     "f1_per_class": [
-      0.98989898989899,
-      0.8679245283018867,
-      0.8631578947368421
+      1.0,
+      0.9484536082474226,
+      0.9514563106796116
     ],
-    "macro_precision": 0.9108465608465609,
-    "macro_recall": 0.9066666666666666,
-    "macro_f1": 0.9069938043125729
+    "macro_precision": 0.9677505687140372,
+    "macro_recall": 0.9666666666666667,
+    "macro_f1": 0.9666366396423447
   },
   "epochs": {
     "A_to_B": 20001,
     "B_to_A": 20001
   },
   "converged": {
-    "A_to_B": true,
+    "A_to_B": false,
     "B_to_A": false
   }
 }

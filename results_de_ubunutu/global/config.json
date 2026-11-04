@@ -18,8 +18,8 @@
   "DEVICE": "cuda",
   "TRAINER": "de",
   "GENOME_DIMENSION": 59,
-  "DE_LOWER_BOUND": -10.0,
-  "DE_UPPER_BOUND": 10.0,
+  "DE_LOWER_BOUND": -1,
+  "DE_UPPER_BOUND": 1,
   "DE_CONFIG": {
     "population_size": 20,
     "dimension": 59,

@@ -1,21 +1,21 @@
 {
   "experiment_id": 10,
   "experiment_seed": 52,
-  "test_accuracy_A_to_B": 0.9733333333333334,
-  "test_accuracy_B_to_A": 0.9333333333333333,
-  "test_accuracy_mean": 0.9533333333333334,
-  "test_accuracy_aggregated": 0.9533333333333334,
+  "test_accuracy_A_to_B": 0.9866666666666667,
+  "test_accuracy_B_to_A": 0.9466666666666667,
+  "test_accuracy_mean": 0.9666666666666667,
+  "test_accuracy_aggregated": 0.9666666666666667,
   "test_accuracy_statistics": {
     "n": 2,
-    "min": 0.9333333333333333,
-    "max": 0.9733333333333334,
-    "mean": 0.9533333333333334,
-    "median": 0.9533333333333334,
-    "mode": 0.9333333333333333,
+    "min": 0.9466666666666667,
+    "max": 0.9866666666666667,
+    "mean": 0.9666666666666667,
+    "median": 0.9666666666666667,
+    "mode": 0.9466666666666667,
     "mode_count": 1,
     "n_distinct_values": 2,
     "mode_is_informative": false,
-    "mode_rounded": 0.933333,
+    "mode_rounded": 0.946667,
     "mode_rounded_count": 1,
     "mode_round_decimals": 6,
     "std": 0.020000000000000018,
@@ -30,35 +30,35 @@
     ],
     [
       0,
-      46,
-      4
+      45,
+      5
     ],
     [
       0,
-      3,
-      47
+      0,
+      50
     ]
   ],
   "aggregated_metrics_test": {
-    "accuracy": 0.9533333333333334,
+    "accuracy": 0.9666666666666667,
     "precision_per_class": [
       1.0,
-      0.9387755102040817,
-      0.9215686274509803
+      1.0,
+      0.9090909090909091
     ],
     "recall_per_class": [
       1.0,
-      0.92,
-      0.94
+      0.9,
+      1.0
     ],
     "f1_per_class": [
       1.0,
-      0.9292929292929293,
-      0.9306930693069307
+      0.9473684210526316,
+      0.9523809523809523
     ],
-    "macro_precision": 0.9534480458850206,
-    "macro_recall": 0.9533333333333333,
-    "macro_f1": 0.9533286661999534
+    "macro_precision": 0.9696969696969697,
+    "macro_recall": 0.9666666666666667,
+    "macro_f1": 0.9665831244778613
   },
   "epochs": {
     "A_to_B": 20001,
@@ -66,6 +66,6 @@
   },
   "converged": {
     "A_to_B": false,
-    "B_to_A": true
+    "B_to_A": false
   }
 }

@@ -1,26 +1,26 @@
 {
   "experiment_id": 25,
   "experiment_seed": 67,
-  "test_accuracy_A_to_B": 0.8533333333333334,
+  "test_accuracy_A_to_B": 0.96,
   "test_accuracy_B_to_A": 0.9466666666666667,
-  "test_accuracy_mean": 0.9,
-  "test_accuracy_aggregated": 0.9,
+  "test_accuracy_mean": 0.9533333333333334,
+  "test_accuracy_aggregated": 0.9533333333333334,
   "test_accuracy_statistics": {
     "n": 2,
-    "min": 0.8533333333333334,
-    "max": 0.9466666666666667,
-    "mean": 0.9,
-    "median": 0.9,
-    "mode": 0.8533333333333334,
+    "min": 0.9466666666666667,
+    "max": 0.96,
+    "mean": 0.9533333333333334,
+    "median": 0.9533333333333334,
+    "mode": 0.9466666666666667,
     "mode_count": 1,
     "n_distinct_values": 2,
     "mode_is_informative": false,
-    "mode_rounded": 0.853333,
+    "mode_rounded": 0.946667,
     "mode_rounded_count": 1,
     "mode_round_decimals": 6,
-    "std": 0.046666666666666634,
-    "std_sample": 0.06599663291074438,
-    "std_population": 0.046666666666666634
+    "std": 0.006666666666666654,
+    "std_sample": 0.009428090415820616,
+    "std_population": 0.006666666666666654
   },
   "aggregated_confusion_matrix_test": [
     [
@@ -30,42 +30,42 @@
     ],
     [
       0,
-      41,
-      9
+      43,
+      7
     ],
     [
       0,
-      6,
-      44
+      0,
+      50
     ]
   ],
   "aggregated_metrics_test": {
-    "accuracy": 0.9,
+    "accuracy": 0.9533333333333334,
     "precision_per_class": [
       1.0,
-      0.8723404255319149,
-      0.8301886792452831
+      1.0,
+      0.8771929824561403
     ],
     "recall_per_class": [
       1.0,
-      0.82,
-      0.88
+      0.86,
+      1.0
     ],
     "f1_per_class": [
       1.0,
-      0.8453608247422681,
-      0.8543689320388349
+      0.924731182795699,
+      0.9345794392523363
     ],
-    "macro_precision": 0.9008430349257326,
-    "macro_recall": 0.8999999999999999,
-    "macro_f1": 0.8999099189270344
+    "macro_precision": 0.9590643274853802,
+    "macro_recall": 0.9533333333333333,
+    "macro_f1": 0.9531035406826783
   },
   "epochs": {
     "A_to_B": 20001,
     "B_to_A": 20001
   },
   "converged": {
-    "A_to_B": true,
-    "B_to_A": true
+    "A_to_B": false,
+    "B_to_A": false
   }
 }

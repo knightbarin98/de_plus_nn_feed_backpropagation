@@ -2,25 +2,25 @@
   "experiment_id": 31,
   "experiment_seed": 73,
   "test_accuracy_A_to_B": 0.96,
-  "test_accuracy_B_to_A": 0.9066666666666666,
-  "test_accuracy_mean": 0.9333333333333333,
-  "test_accuracy_aggregated": 0.9333333333333333,
+  "test_accuracy_B_to_A": 1.0,
+  "test_accuracy_mean": 0.98,
+  "test_accuracy_aggregated": 0.98,
   "test_accuracy_statistics": {
     "n": 2,
-    "min": 0.9066666666666666,
-    "max": 0.96,
-    "mean": 0.9333333333333333,
-    "median": 0.9333333333333333,
-    "mode": 0.9066666666666666,
+    "min": 0.96,
+    "max": 1.0,
+    "mean": 0.98,
+    "median": 0.98,
+    "mode": 0.96,
     "mode_count": 1,
     "n_distinct_values": 2,
     "mode_is_informative": false,
-    "mode_rounded": 0.906667,
+    "mode_rounded": 0.96,
     "mode_rounded_count": 1,
     "mode_round_decimals": 6,
-    "std": 0.026666666666666672,
-    "std_sample": 0.03771236166328254,
-    "std_population": 0.026666666666666672
+    "std": 0.020000000000000018,
+    "std_sample": 0.028284271247461926,
+    "std_population": 0.020000000000000018
   },
   "aggregated_confusion_matrix_test": [
     [
@@ -30,42 +30,42 @@
     ],
     [
       0,
-      45,
-      5
+      47,
+      3
     ],
     [
       0,
-      5,
-      45
+      0,
+      50
     ]
   ],
   "aggregated_metrics_test": {
-    "accuracy": 0.9333333333333333,
+    "accuracy": 0.98,
     "precision_per_class": [
       1.0,
-      0.9,
-      0.9
+      1.0,
+      0.9433962264150944
     ],
     "recall_per_class": [
       1.0,
-      0.9,
-      0.9
+      0.94,
+      1.0
     ],
     "f1_per_class": [
       1.0,
-      0.9,
-      0.9
+      0.9690721649484536,
+      0.970873786407767
     ],
-    "macro_precision": 0.9333333333333332,
-    "macro_recall": 0.9333333333333332,
-    "macro_f1": 0.9333333333333332
+    "macro_precision": 0.9811320754716982,
+    "macro_recall": 0.98,
+    "macro_f1": 0.9799819837854069
   },
   "epochs": {
     "A_to_B": 20001,
     "B_to_A": 20001
   },
   "converged": {
-    "A_to_B": true,
+    "A_to_B": false,
     "B_to_A": false
   }
 }

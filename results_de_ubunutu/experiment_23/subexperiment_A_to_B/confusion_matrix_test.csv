@@ -1,4 +1,4 @@
 real \ predicha,pred_Iris-setosa,pred_Iris-versicolor,pred_Iris-virginica
 real_Iris-setosa,25,0,0
-real_Iris-versicolor,0,24,1
-real_Iris-virginica,0,2,23
+real_Iris-versicolor,0,23,2
+real_Iris-virginica,0,0,25
