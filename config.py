@@ -32,8 +32,8 @@ TRAINER: str = "de"
 
 # genoma = todos los pesos de la red (fig. 1 del artículo): V (5×7) aplanada y después W (8×3) aplanada
 GENOME_DIMENSION: int = INPUT_WITH_BIAS * HIDDEN_NEURONS + HIDDEN_WITH_BIAS * OUTPUT_NEURONS   # 35 + 24 = 59
-DE_LOWER_BOUND: float = -10.0
-DE_UPPER_BOUND: float = 10.0
+DE_LOWER_BOUND: float = -1
+DE_UPPER_BOUND: float = 1
 
 
 # hiperparámetros de ../de-algorithm/config.py (DE/rand/1/bin), salvo población y dimensión

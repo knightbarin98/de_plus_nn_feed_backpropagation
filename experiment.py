@@ -84,12 +84,8 @@ def run_subexperiment(X: torch.Tensor, y_idx: torch.Tensor, Y: torch.Tensor, tra
     Y_tr = Y[train_idx]
     yi_te = y_idx[test_idx]
 
-    mu, std = fit_standardizer(X_tr)
-    X_tr_n = apply_standarizer(X_tr, mu, std)
-    X_te_n = apply_standarizer(X_te, mu, std)
-
-    Xtr_aug = add_bias(X_tr_n)
-    Xte_aug = add_bias(X_te_n)
+    Xtr_aug = add_bias(X_tr)
+    Xte_aug = add_bias(X_te)
 
     if TRAINER == "de":
         V, W, losses, converged = train_subexperiment_de(Xtr_aug, Y_tr, seed, device)
